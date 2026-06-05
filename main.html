@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>MONDEYRO | Catalog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
+    <header>
+        <nav>
+            <div class="menu">
+                <a href="index.html">Main</a> 
+                <a href="main.html">Catalog</a>
+                <a href="models.html">Models</a>
+                <a href="contact.html">Contact</a> 
+            </div>
+            <h1 class="logo">MONDEYRO</h1>
+        </nav>
+    </header>
+
+    <main>
+        <h2 class="section-title">CATALOG</h2>
+        <div id="product-grid" class="product-grid"></div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>Contact: mondeyroos@gmail.com</p>
+                <p>Instagram: @mondeyro.shop</p>
+                <p>© 2026 MONDEYRO</p>
+            </div>
+            <div class="logo" style="font-size: 18px;">MONDEYRO</div>
+        </div>
+    </footer>
+
+    <script>
+        
+        const produits = [
+            {
+                id: "love-fuck-sad-boys-pink",
+                nom: "LOVE FUCK SAD BOYS - PINK",
+                prix: 30,
+                image_url: "Pink.png" 
+            },
+            {
+                id: "love-fuck-sad-boys-black",
+                nom: "LOVE FUCK SAD BOYS - BLACK",
+                prix: 30,
+                image_url: "Black.png" 
+            }
+        ];
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('mondeyro_cart')) || [];
+            
+            const cartCountEl = document.getElementById('cart-count');
+            if (cartCountEl) {
+                cartCountEl.innerText = cart.reduce((a, b) => a + b.quantite, 0);
+            }
+        }
+
+        function displayProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = produits.map(p => `
+                <div class="product-card">
+                    <img src="${p.image_url}" alt="${p.nom}">
+                    <h3>${p.nom}</h3>
+                    <p>${p.prix}€</p>
+                    <a href="produit.html?id=${p.id}" class="btn-more">More</a>
+                </div>
+            `).join('');
+            
+            updateCartCount();
+        }
+
+        
+        window.onload = displayProducts;
+    </script>
+</body>
+</html>

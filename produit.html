@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONDEYRO | Product</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .product-main {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 100px;
+        }
+        .product-image-side {
+            flex: 1;
+            text-align: center;
+        }
+        .product-image-side img {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+        }
+        .product-info-side {
+            flex: 1;
+        }
+        .product-info-side h1 {
+            font-size: 24px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .product-info-side .price {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .product-info-side .description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+            letter-spacing: 1px;
+        }
+        .gallery-section {
+            border-top: 1px solid #eee;
+            padding-top: 60px;
+            text-align: center;
+        }
+        .gallery-section h2 {
+            font-size: 18px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .photo-grid img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border: 1px solid #f5f5f5;
+        }
+        @media (max-width: 900px) {
+            .product-main {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .photo-grid img {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="menu">
+                <a href="index.html">Main</a> 
+                <a href="main.html">Catalog</a>
+                <a href="models.html">Models</a>
+                <a href="contact.html">Contact</a> 
+            </div>
+            <h1 class="logo">MONDEYRO</h1>
+        </nav>
+    </header>
+
+    <main class="product-container">
+        <div class="product-main">
+            <div class="product-image-side">
+                <img id="product-img" src="" alt="T-Shirt">
+            </div>
+            <div class="product-info-side">
+                <h1 id="product-title"></h1>
+                <p class="price">35€</p>
+                <p id="product-desc" class="description"></p>
+            </div>
+        </div>
+
+        <section class="gallery-section">
+            <h2>Worn by community</h2>
+            <div class="photo-grid" id="lookbook-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>Contact: mondeyroos@gmail.com</p>
+                <p>Instagram: @mondeyro.shop</p>
+                <p>© 2026 MONDEYRO</p>
+            </div>
+            <div class="logo" style="font-size: 18px;">MONDEYRO</div>
+        </div>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        const titleEl = document.getElementById('product-title');
+        const descEl = document.getElementById('product-desc');
+        const imgEl = document.getElementById('product-img');
+        const galleryGrid = document.getElementById('lookbook-grid');
+
+        if (productId === 'love-fuck-sad-boys-pink') {
+            titleEl.innerText = 'LOVE FUCK SAD BOYS - PINK';
+            descEl.innerText = 'This rose "Sad Boys" T-shirt features a striking design and is made of 100 percent cotton using a special technique. It will complement any outfit perfectly.';
+            imgEl.src = 'Pink.png';
+            
+            // Génère automatiquement les 41 images pink
+            let pinkImages = '';
+            for (let i = 1; i <= 41; i++) {
+                pinkImages += `<img src="pink (${i}).jpg" alt="Lookbook Pink ${i}">`;
+            }
+            galleryGrid.innerHTML = pinkImages;
+
+        } else {
+            titleEl.innerText = 'LOVE FUCK SAD BOYS - BLACK';
+            descEl.innerText = 'This black "Sad Boys" T-shirt features a striking design and is made of 100 percent cotton using a special technique. It will complement any outfit perfectly.';
+            imgEl.src = 'Black.png';
+
+            // Génère automatiquement les 17 images black
+            let blackImages = '';
+            for (let i = 1; i <= 17; i++) {
+                blackImages += `<img src="black (${i}).jpg" alt="Lookbook Black ${i}">`;
+            }
+            galleryGrid.innerHTML = blackImages;
+        }
+    </script>
+
+</body>
+</html>
